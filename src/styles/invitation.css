@@ -17,10 +17,12 @@
   --card-border: #dfb743;
   --cd-card-bg: linear-gradient(165deg, #ffffff 0%, #fff8fa 60%, #fae8ef 100%);
   --petal-color: #f29ebb;
-  --royal: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  
+  --royal: "Cinzel", "Playfair Display", Georgia, serif;
+  --display: "Playfair Display", Georgia, serif;
   --serif: "Cormorant Garamond", Georgia, serif;
-  --script: "Pinyon Script", "Great Vibes", cursive;
-  --sans: "Montserrat", -apple-system, sans-serif;
+  --script: "Alex Brush", "Pinyon Script", cursive;
+  --sans: "Plus Jakarta Sans", -apple-system, sans-serif;
 }
 
 [data-theme="royal-emerald"] {
@@ -83,22 +85,38 @@
   --petal-color: #8c1228;
 }
 
-* { box-sizing: border-box; margin: 0; }
-html { scroll-behavior: smooth; }
+/* Base Reset & Mobile Screen Foundations */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
 body {
   font-family: var(--serif);
   background: var(--deep);
   color: var(--ivory);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   transition: background 0.5s ease, color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
 }
-:focus-visible { outline: 3px solid var(--gold2); outline-offset: 3px; }
+:focus-visible {
+  outline: 2px solid var(--gold2);
+  outline-offset: 3px;
+}
 
+/* Sections Foundation */
 .sec {
   min-height: 100svh;
-  padding: clamp(4rem, 10vw, 7rem) 1.75rem;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 4vw, 2.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,7 +124,8 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
-  gap: 0.8rem;
+  gap: 0.75rem;
+  width: 100%;
 }
 .burgundy {
   background: var(--bg-gradient);
@@ -133,9 +152,9 @@ body {
 }
 .eyebrow {
   font-family: var(--sans);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.8vw, 0.85rem);
   color: var(--gold);
   font-weight: 600;
 }
@@ -144,16 +163,18 @@ body {
 }
 .lead {
   max-width: 36rem;
-  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
-  line-height: 1.7;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  line-height: 1.65;
+  padding: 0 0.5rem;
 }
 .gold {
   color: var(--gold2);
 }
 .rule {
-  width: min(240px, 60%);
-  height: 2px;
-  margin: 0.8rem auto;
+  width: min(220px, 50%);
+  height: 1.5px;
+  margin: 0.6rem auto;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
@@ -161,43 +182,45 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0.85rem 2.2rem;
-  margin-top: 1rem;
+  min-height: 46px;
+  padding: 0.75rem 2rem;
+  margin-top: 0.8rem;
   border: 1px solid var(--gold);
   background: linear-gradient(135deg, #ffd700, #b8860b);
   color: #240208;
-  font-family: var(--royal);
+  font-family: var(--sans);
   font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   border-radius: 999px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
+  touch-action: manipulation;
 }
 .btn:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.45);
 }
 
+/* Scroll Reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 1s ease, transform 1s ease;
+  transform: translateY(20px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
 }
 .reveal.in {
   opacity: 1;
   transform: none;
 }
-.d1 { transition-delay: 0.15s; }
-.d2 { transition-delay: 0.3s; }
-.d3 { transition-delay: 0.45s; }
+.d1 { transition-delay: 0.12s; }
+.d2 { transition-delay: 0.24s; }
+.d3 { transition-delay: 0.36s; }
 
-/* =================== 3D ROYAL GOLD WAX SEAL ENVELOPE =================== */
+/* =================== 3D ROYAL WAX SEAL ENVELOPE =================== */
 .envelope-scene {
   position: fixed;
   inset: 0;
@@ -206,6 +229,7 @@ body {
   place-items: center;
   overflow: hidden;
   background: var(--envelope-bg);
+  padding: 1rem;
   transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .envelope-scene.scene-fading {
@@ -214,7 +238,7 @@ body {
   pointer-events: none;
 }
 
-/* Floating Stardust Embers */
+/* Floating Stardust */
 .stardust-container {
   position: absolute;
   inset: 0;
@@ -238,7 +262,7 @@ body {
   100% { opacity: 0; transform: translateY(-70px) scale(1.3); }
 }
 
-/* Scene Content Container */
+/* Scene Content */
 .scene-content {
   position: relative;
   z-index: 10;
@@ -246,58 +270,49 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.2rem;
-  max-width: 94vw;
-  padding: 1.5rem 1rem;
+  gap: clamp(0.75rem, 2.5vw, 1.2rem);
+  width: min(500px, 94vw);
+  margin: auto;
 }
-
-/* Header Text */
 .scene-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  animation: dropIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  gap: 0.25rem;
 }
 .delivery-tag {
   font-family: var(--sans);
-  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-  letter-spacing: 0.32em;
-  color: #ffd700;
+  font-size: clamp(0.72rem, 1.8vw, 0.85rem);
+  letter-spacing: 0.28em;
+  color: var(--gold);
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 10px rgba(223, 183, 67, 0.5);
 }
 .delivery-title {
-  font-family: var(--royal);
-  font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 4.5vw, 2.2rem);
   font-weight: 600;
-  color: #fff9ee;
-  letter-spacing: 0.06em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  color: #fffaf5;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   line-height: 1.2;
-  text-transform: uppercase;
 }
 
 /* 3D Envelope Wrapper */
 .envelope-wrapper {
   position: relative;
-  width: min(480px, 90vw);
-  height: clamp(260px, 50vw, 310px);
-  perspective: 1400px;
+  width: min(450px, 92vw);
+  height: clamp(220px, 52vw, 280px);
+  perspective: 1200px;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.4s ease;
-  margin: 0.4rem 0;
+  transition: transform 0.35s ease;
+  margin: 0.25rem 0;
 }
 .envelope-wrapper:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
-.envelope-wrapper:focus-visible {
-  outline: 3px solid #ffd700;
-  outline-offset: 6px;
-}
-
-/* The Envelope Box */
 .envelope {
   position: relative;
   width: 100%;
@@ -305,39 +320,35 @@ body {
   border-radius: 8px;
   transform-style: preserve-3d;
   box-shadow: 
-    0 25px 65px rgba(0, 0, 0, 0.85),
-    0 0 40px rgba(184, 24, 52, 0.3),
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(223, 183, 67, 0.2),
     inset 0 0 0 1px rgba(212, 175, 55, 0.4);
 }
-
-/* Envelope Back Interior */
 .envelope-back {
   position: absolute;
   inset: 0;
   border-radius: 8px;
-  background: 
-    radial-gradient(ellipse at 50% 40%, rgba(163, 18, 42, 0.4) 0%, transparent 70%),
-    linear-gradient(160deg, #2d030c 0%, #170105 100%);
+  background: var(--pocket-bg);
   border: 1px solid rgba(212, 175, 55, 0.3);
   overflow: hidden;
 }
 
-/* The Royal Gold Foil Card */
+/* The Sliding Card */
 .envelope-card {
   position: absolute;
-  left: 4.5%;
-  right: 4.5%;
-  top: 4.5%;
-  bottom: 4.5%;
+  left: 3.5%;
+  right: 3.5%;
+  top: 3.5%;
+  bottom: 3.5%;
   border-radius: 6px;
   z-index: 2;
-  background: linear-gradient(155deg, #fffcf5 0%, #faeed7 45%, #eed9ae 100%);
-  color: #3b0510;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-  border: 2px solid #d4af37;
-  outline: 1px solid rgba(212, 175, 55, 0.7);
-  outline-offset: -7px;
-  padding: 1rem 1.2rem;
+  background: var(--card-bg);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid var(--card-border);
+  outline: 1px solid rgba(212, 175, 55, 0.6);
+  outline-offset: -6px;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,105 +356,109 @@ body {
   transform: translateY(0) scale(0.96);
   pointer-events: none;
   transition: 
-    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
-    opacity 0.5s ease 0.3s,
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+    opacity 0.4s ease 0.3s,
     z-index 0.1s linear 0.45s;
 }
 .envelope-opened .envelope-card {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(-84%) scale(1.03);
+  transform: translateY(-72%) scale(1.01);
   z-index: 6;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 215, 0, 0.35);
 }
 .card-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.2rem;
   width: 100%;
 }
 .card-top-ornament {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: #b8860b;
   letter-spacing: 0.2em;
 }
 .card-eyebrow {
   font-family: var(--sans);
-  font-size: clamp(0.65rem, 1.6vw, 0.75rem);
-  letter-spacing: 0.22em;
+  font-size: clamp(0.62rem, 1.5vw, 0.72rem);
+  letter-spacing: 0.2em;
   color: #7a5a0a;
   text-transform: uppercase;
   font-weight: 600;
 }
 .card-event {
   font-family: var(--script);
-  font-size: clamp(2rem, 5.2vw, 2.8rem);
-  color: #8c1430;
+  font-size: clamp(1.8rem, 5.2vw, 2.5rem);
+  color: var(--wine);
   font-weight: 400;
   line-height: 1.1;
 }
 .card-gold-rule {
-  width: 75px;
-  height: 1.5px;
+  width: 60px;
+  height: 1px;
   background: linear-gradient(90deg, transparent, #b8860b, transparent);
   margin: 0.1rem 0;
 }
 .card-names {
-  font-family: var(--royal);
-  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #3b0510;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.card-baby-girl-note {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--red);
+  margin: 0.05rem 0;
 }
 .card-date-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.75rem;
+  padding: 0.18rem 0.65rem;
   border-radius: 999px;
-  background: #fbf3e4;
-  border: 1px solid #d4af37;
-  color: #630c1d;
+  background: #fbf5e8;
+  border: 1px solid var(--gold);
+  color: var(--wine);
   font-family: var(--sans);
-  font-size: clamp(0.68rem, 1.5vw, 0.8rem);
+  font-size: clamp(0.65rem, 1.4vw, 0.75rem);
   font-weight: 600;
-  margin-top: 0.15rem;
 }
 .card-venue {
   font-family: var(--royal);
-  font-size: clamp(0.75rem, 1.7vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.6vw, 0.85rem);
   font-weight: 600;
-  color: #5a0a1a;
-  margin-top: 0.15rem;
+  color: var(--wine);
+  margin-top: 0.1rem;
 }
 .card-location {
-  font-size: clamp(0.68rem, 1.5vw, 0.8rem);
-  color: #6d3a1f;
+  font-family: var(--sans);
+  font-size: clamp(0.65rem, 1.4vw, 0.75rem);
+  color: #7a5a0a;
 }
 .card-tap-enter {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.45rem;
-  padding: 0.3rem 0.9rem;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  padding: 0.28rem 0.85rem;
   border-radius: 999px;
   background: linear-gradient(135deg, #ffd700, #b8860b);
   color: #2b030b;
   font-family: var(--sans);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  animation: pulseButton 2s infinite;
-}
-@keyframes pulseButton {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); box-shadow: 0 4px 18px rgba(255, 215, 0, 0.6); }
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Envelope Front Pocket (Pouch) */
+/* Front Pocket */
 .envelope-pocket {
   position: absolute;
   inset: 0;
@@ -451,7 +466,7 @@ body {
   pointer-events: none;
   border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(180deg, transparent 0%, rgba(45, 3, 12, 0.5) 25%, #3d0510 50%, #280208 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(30, 5, 14, 0.45) 25%, #3d0510 50%, #20040a 100%);
 }
 .pocket-fold-left {
   position: absolute;
@@ -461,7 +476,7 @@ body {
   width: 50%;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
   background: var(--pocket-bg);
-  box-shadow: 2px 0 14px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
 }
 .pocket-fold-right {
   position: absolute;
@@ -471,7 +486,7 @@ body {
   width: 50%;
   clip-path: polygon(100% 0, 0 50%, 100% 100%);
   background: var(--pocket-bg);
-  box-shadow: -2px 0 14px rgba(0, 0, 0, 0.6);
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.5);
 }
 .pocket-fold-bottom {
   position: absolute;
@@ -481,28 +496,28 @@ body {
   height: 60%;
   clip-path: polygon(0 100%, 100% 100%, 50% 15%);
   background: var(--flap-bg);
-  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.6);
 }
 .pocket-gold-corner {
   position: absolute;
-  width: 32px;
-  height: 32px;
-  border-color: #d4af37;
+  width: 26px;
+  height: 26px;
+  border-color: var(--gold);
   border-style: solid;
   opacity: 0.8;
 }
 .pocket-gold-corner.tl {
-  top: 8px;
-  left: 8px;
+  top: 6px;
+  left: 6px;
   border-width: 2px 0 0 2px;
 }
 .pocket-gold-corner.tr {
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   border-width: 2px 2px 0 0;
 }
 
-/* Top Envelope Flap */
+/* Envelope Flap */
 .envelope-flap {
   position: absolute;
   top: 0;
@@ -513,7 +528,7 @@ body {
   background: var(--flap-bg);
   transform-origin: top center;
   z-index: 4;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
   transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .flap-border-gold {
@@ -521,7 +536,7 @@ body {
   inset: 0;
   clip-path: polygon(0 0, 100% 0, 50% 98%);
   border-bottom: 2px solid #ffd700;
-  filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.7));
+  filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.6));
 }
 .envelope-opened .envelope-flap {
   transform: rotateX(180deg);
@@ -529,22 +544,22 @@ body {
   transition-delay: 0.1s;
 }
 
-/* Golden Monogram Wax Seal */
+/* Wax Seal */
 .wax-seal-wrapper {
   position: absolute;
   top: 59%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  width: clamp(86px, 17vw, 110px);
+  width: clamp(76px, 18vw, 100px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 .seal-halo-glow {
   position: absolute;
-  inset: -15px;
+  inset: -12px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.45) 0%, rgba(212, 175, 55, 0.1) 60%, transparent 75%);
   animation: sealHaloPulse 3s ease-in-out infinite alternate;
@@ -556,11 +571,11 @@ body {
 .seal-gold-ribbon {
   position: absolute;
   top: 75%;
-  width: 44px;
-  height: 38px;
+  width: 38px;
+  height: 32px;
   background: linear-gradient(180deg, #ffd700, #b8860b);
   clip-path: polygon(0 0, 100% 0, 85% 100%, 50% 75%, 15% 100%);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
 .wax-seal-img {
@@ -568,21 +583,21 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.8));
   transition: transform 0.3s ease;
 }
 .envelope-wrapper:hover .wax-seal-img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 .seal-sparkle-ping {
   position: absolute;
   top: 14%;
   right: 18%;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 10px 3px #ffffff;
+  box-shadow: 0 0 8px 2px #ffffff;
   animation: pingSparkle 2s ease-in-out infinite;
 }
 @keyframes pingSparkle {
@@ -590,7 +605,7 @@ body {
   50% { opacity: 1; transform: scale(1.3); }
 }
 
-/* Wax Seal Breaking Animation */
+/* Wax Seal Breaking */
 .envelope-opened .wax-seal-wrapper {
   animation: breakWaxSeal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
@@ -600,18 +615,18 @@ body {
     filter: drop-shadow(0 0 25px #ffd700);
   }
   35% {
-    transform: translate(-50%, -50%) scale(1.3) rotate(8deg);
+    transform: translate(-50%, -50%) scale(1.25) rotate(8deg);
     opacity: 1;
-    filter: brightness(1.6) drop-shadow(0 0 35px #ffffff);
+    filter: brightness(1.5) drop-shadow(0 0 35px #ffffff);
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.8) rotate(18deg);
+    transform: translate(-50%, -50%) scale(1.7) rotate(18deg);
     opacity: 0;
     pointer-events: none;
   }
 }
 
-/* Wax Burst Sparks */
+/* Wax Burst */
 .wax-burst {
   position: absolute;
   top: 59%;
@@ -627,55 +642,43 @@ body {
   background: #fff6cc;
   border-radius: 50%;
   box-shadow: 0 0 10px 3px #ffd700;
-  animation: burstParticle 0.9s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+  animation: burstParticle 0.85s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
 }
 @keyframes burstParticle {
-  0% {
-    opacity: 1;
-    transform: rotate(var(--angle, 0deg)) translate(0px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(var(--angle, 0deg)) translate(90px) scale(0);
-  }
+  0% { opacity: 1; transform: rotate(var(--angle, 0deg)) translate(0px) scale(1); }
+  100% { opacity: 0; transform: rotate(var(--angle, 0deg)) translate(80px) scale(0); }
 }
 
-/* Footer Controls */
+/* Footer Button */
 .scene-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
-  animation: dropIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  gap: 0.5rem;
 }
 .open-envelope-btn {
   position: relative;
   overflow: hidden;
-  padding: 0.85rem 2.6rem;
+  padding: 0.8rem 2.2rem;
   background: linear-gradient(135deg, #fce594 0%, #d4af37 50%, #9e7b15 100%);
   color: #240208;
-  font-family: var(--royal);
-  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-family: var(--sans);
+  font-size: clamp(0.85rem, 2.2vw, 1.05rem);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  border: 2px solid #fff5cc;
+  border: 1.5px solid #fff5cc;
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.7),
-    0 0 25px rgba(255, 215, 0, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.35);
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
 }
 .open-envelope-btn:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.8),
-    0 0 35px rgba(255, 215, 0, 0.75);
-  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7), 0 0 28px rgba(255, 215, 0, 0.65);
 }
 .btn-shimmer-sweep {
   position: absolute;
@@ -693,59 +696,71 @@ body {
 }
 .tap-hint {
   font-family: var(--sans);
-  font-size: clamp(0.78rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.6vw, 0.85rem);
   color: #dfcaa0;
-  letter-spacing: 0.08em;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
-}
-@keyframes dropIn {
-  from { opacity: 0; transform: translateY(-16px); }
-  to { opacity: 1; transform: translateY(0); }
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* =================== LUXURY INVITATION SECTIONS =================== */
-.section-ornament {
-  color: var(--gold);
-  font-size: 1rem;
-  letter-spacing: 0.35em;
-  margin-bottom: 0.2rem;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-}
-
-/* Section 1: Parents' Gracious Invitation */
+/* =================== HERO INTRO SECTION =================== */
 .intro-section {
-  padding-top: clamp(5rem, 12vw, 8rem);
-  padding-bottom: clamp(5rem, 12vw, 8rem);
+  padding-top: clamp(4.5rem, 10vw, 7rem);
+  padding-bottom: clamp(4rem, 9vw, 6rem);
 }
+.baby-sparkle-stars {
+  color: var(--gold);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  letter-spacing: 0.35em;
+  margin-bottom: 0.1rem;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 18px rgba(255, 215, 0, 0.9); }
+}
+
+.playful-eyebrow {
+  color: var(--gold2);
+  letter-spacing: 0.2em;
+  font-size: clamp(0.72rem, 1.8vw, 0.88rem);
+}
+
 .royal-names {
-  font-family: var(--royal);
-  font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(2.1rem, 6.5vw, 4rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   background: linear-gradient(135deg, #ffffff 0%, #ffe9a4 30%, #ffd700 70%, #d4af37 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.8));
-  text-transform: uppercase;
-  margin: 0.3rem 0;
-  line-height: 1.15;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.75));
+  margin: 0.2rem 0;
+  line-height: 1.18;
+  word-break: keep-all;
 }
-.invitation-subtitle {
+
+.playful-subtitle {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
-  color: #f7eedb;
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  color: #fff6e5;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   max-width: 34ch;
   line-height: 1.4;
-  margin: 0.35rem 0;
+  margin: 0.3rem auto;
+  display: block;
 }
+
 .ceremony-tag-wrapper {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin: 0.6rem 0;
-  width: min(560px, 92vw);
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.4rem 0;
+  width: min(540px, 92vw);
 }
 .ceremony-accent-line {
   flex: 1;
@@ -754,65 +769,36 @@ body {
 }
 .ceremony-title {
   font-family: var(--script);
-  font-size: clamp(3rem, 8.5vw, 5.2rem);
-  color: #fff1b8;
-  text-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.8);
-  line-height: 1;
+  font-size: clamp(2.8rem, 8vw, 4.8rem);
+  color: #fff2b8;
+  text-shadow: 0 0 25px rgba(223, 183, 67, 0.5), 0 2px 6px rgba(0, 0, 0, 0.8);
+  line-height: 1.05;
   white-space: nowrap;
 }
+
 .ceremony-for {
   font-family: var(--serif);
-  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
   color: #faeccf;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 .baby-mention {
   color: var(--gold2);
-}
-.baby-sparkle-stars {
-  color: var(--gold);
-  font-size: 1.15rem;
-  letter-spacing: 0.35em;
-  margin-bottom: 0.15rem;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
-  animation: starTwinkle 3s ease-in-out infinite alternate;
-}
-@keyframes starTwinkle {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 18px rgba(255, 215, 0, 0.9); }
-}
-
-.playful-eyebrow {
-  color: #ffd978;
-  letter-spacing: 0.25em;
-  font-size: clamp(0.78rem, 1.8vw, 0.95rem);
-}
-
-.playful-subtitle {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.25rem, 2.8vw, 1.6rem);
-  color: #fff6e5;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
-  max-width: 36ch;
-  line-height: 1.4;
-  margin: 0.4rem auto;
-  display: block;
 }
 
 .baby-sweet-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.45rem 1.3rem;
-  margin-top: 1.2rem;
+  padding: 0.45rem 1.25rem;
+  margin-top: 1rem;
   border-radius: 999px;
   background: rgba(30, 3, 8, 0.55);
   border: 1px solid rgba(255, 215, 0, 0.4);
   color: #fff3d1;
   font-family: var(--sans);
-  font-size: clamp(0.82rem, 1.8vw, 0.95rem);
-  letter-spacing: 0.05em;
+  font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+  letter-spacing: 0.03em;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
@@ -820,11 +806,11 @@ body {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  margin-top: 1.4rem;
+  gap: 0.2rem;
+  margin-top: 1.2rem;
   font-family: var(--sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0.85;
@@ -835,80 +821,80 @@ body {
 }
 @keyframes bounceDown {
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(6px); }
-  60% { transform: translateY(3px); }
+  40% { transform: translateY(5px); }
+  60% { transform: translateY(2px); }
 }
 
-/* Headings for other sections */
+/* Headings for Sections */
 .section-serif-heading {
-  font-family: var(--royal);
-  font-size: clamp(1.8rem, 4.8vw, 2.8rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
   color: var(--wine);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 .burgundy .section-serif-heading {
   color: #ffd700;
-  text-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.35);
 }
 .blessing-signoff {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 .signoff-quote {
   font-style: italic;
   color: #7a5a0a;
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
 }
 .signoff-by {
-  font-family: var(--royal);
+  font-family: var(--display);
+  font-style: italic;
   color: var(--wine);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   font-size: 1.1rem;
 }
 
 /* =================== LUXURY COUNTDOWN SECTION =================== */
 .countdown-section {
   background: radial-gradient(circle at 50% 30%, #fffbf2 0%, #fbf3e4 70%, #f5e8cf 100%);
-  gap: 0.9rem;
+  gap: 0.8rem;
 }
 .cd-ornament {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   letter-spacing: 0.3em;
   color: #b8860b;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(0.5rem, 2vw, 1.4rem);
-  width: min(640px, 94vw);
-  margin-top: 1.2rem;
+  gap: clamp(0.45rem, 2vw, 1.2rem);
+  width: min(600px, 94vw);
+  margin-top: 1rem;
 }
 .cd-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(1.1rem, 2.8vw, 1.8rem) clamp(0.5rem, 1.5vw, 1rem);
-  background: linear-gradient(165deg, #ffffff 0%, #fffaf0 60%, #faedd7 100%);
-  border: 2px solid #d4af37;
+  padding: clamp(0.9rem, 2.5vw, 1.6rem) clamp(0.35rem, 1.2vw, 0.85rem);
+  background: var(--cd-card-bg);
+  border: 1.5px solid var(--card-border);
   border-radius: 10px;
   box-shadow: 
-    0 10px 24px rgba(90, 10, 26, 0.08),
-    0 2px 6px rgba(212, 175, 55, 0.25),
+    0 8px 20px rgba(90, 10, 26, 0.07),
+    0 2px 6px rgba(212, 175, 55, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .cd-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(90, 10, 26, 0.15), 0 0 20px rgba(212, 175, 55, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(90, 10, 26, 0.12), 0 0 18px rgba(212, 175, 55, 0.35);
 }
 .cd-card::before {
   content: "";
@@ -916,149 +902,142 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
 }
 .cd-num {
-  font-family: var(--royal);
-  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 6.5vw, 3.2rem);
   font-weight: 700;
   color: #6d0b1f;
   line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(90, 10, 26, 0.1);
+  text-shadow: 0 2px 4px rgba(90, 10, 26, 0.08);
 }
 .cd-label {
   font-family: var(--sans);
-  font-size: clamp(0.68rem, 1.6vw, 0.85rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.78rem);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #7a5a0a;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
 }
 .cd-footer-note {
   font-family: var(--serif);
-  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: #630c1d;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
 }
 .cd-footer-note strong {
   font-family: var(--sans);
   color: #8c1228;
-  letter-spacing: 0.04em;
-}
-.card-baby-girl-note {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #a3122a;
-  margin: 0.1rem 0 0.15rem;
+  letter-spacing: 0.03em;
 }
 
-/* Invitation Card Section */
+/* =================== INVITATION CARD SECTION =================== */
 .card {
   position: relative;
-  max-width: 640px;
-  width: 100%;
-  padding: clamp(2.8rem, 6vw, 4.2rem) clamp(1.5rem, 5vw, 3rem);
-  background: linear-gradient(160deg, #fffdf8, #f5ebd3);
+  max-width: 600px;
+  width: min(600px, 92vw);
+  padding: clamp(2.2rem, 5.5vw, 3.8rem) clamp(1.2rem, 4.5vw, 2.5rem);
+  background: var(--card-bg);
   color: var(--ink);
-  border: 3px double var(--gold);
-  outline: 1px solid var(--gold);
-  outline-offset: -14px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 2px double var(--card-border);
+  outline: 1px solid var(--card-border);
+  outline-offset: -10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  border-radius: 4px;
   z-index: 1;
 }
 .serif-title {
-  font-family: var(--royal);
+  font-family: var(--display);
+  font-style: italic;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--wine);
-  font-size: clamp(1.6rem, 4.5vw, 2.5rem);
-  margin: 0.2rem 0;
+  font-size: clamp(1.5rem, 4.2vw, 2.3rem);
+  margin: 0.15rem 0;
 }
 .card-hosts-label {
   font-family: var(--sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  font-size: clamp(0.68rem, 1.6vw, 0.78rem);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #7a5a0a;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 .royal-card-names {
-  font-family: var(--royal);
-  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 4.8vw, 2.4rem);
   font-weight: 700;
   color: #8c1430;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin: 0.3rem 0;
+  letter-spacing: 0.06em;
+  margin: 0.25rem 0;
 }
 .card-ornament-divider {
   color: #b8860b;
   letter-spacing: 0.3em;
-  margin: 0.6rem 0;
-  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  font-size: 0.82rem;
 }
 .card .flower {
   position: absolute;
-  width: clamp(48px, 13vw, 84px);
+  width: clamp(40px, 11vw, 75px);
   height: auto;
 }
-.tl { top: -1.2rem; left: -1.2rem; }
-.tr { top: -1.2rem; right: -1.2rem; }
-.bl { bottom: -1.2rem; left: -1.2rem; }
-.br { bottom: -1.2rem; right: -1.2rem; }
+.tl { top: -1rem; left: -1rem; }
+.tr { top: -1rem; right: -1rem; }
+.bl { bottom: -1rem; left: -1rem; }
+.br { bottom: -1rem; right: -1rem; }
 .card-line {
-  font-size: clamp(1.15rem, 2.5vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.3vw, 1.25rem);
 }
 .card-line.date-time {
   font-family: var(--sans);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #5a0a1a;
   margin-top: 0.2rem;
+  font-weight: 600;
 }
 .card-venue {
   font-family: var(--royal);
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
   font-weight: 700;
   color: var(--wine);
-  margin-top: 0.5rem;
-  letter-spacing: 0.05em;
+  margin-top: 0.4rem;
+  letter-spacing: 0.04em;
 }
 
-/* Event Details & Schedule */
+/* Details Grid */
 .details {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1.2rem;
-  width: min(900px, 100%);
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.2rem);
+  width: min(840px, 94vw);
+  margin-top: 1.2rem;
 }
 .details div {
   border: 1px solid var(--gold);
-  background: #fffdf7;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
+  background: var(--card-bg);
+  padding: 1.2rem 0.85rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
 }
 .details dt {
   font-family: var(--sans);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  font-size: clamp(0.68rem, 1.5vw, 0.75rem);
   color: #7a5a0a;
   font-weight: 600;
 }
 .details dd {
-  font-family: var(--royal);
-  font-size: 1.4rem;
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
   color: var(--wine);
   font-weight: 600;
-  margin-top: 0.35rem;
+  margin-top: 0.3rem;
 }
 
 /* Final Signoff */
@@ -1066,39 +1045,39 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
-  margin-top: 2rem;
+  gap: 0.25rem;
+  margin-top: 1.6rem;
 }
 .signoff-label {
   font-family: var(--sans);
-  font-size: 0.82rem;
-  letter-spacing: 0.28em;
+  font-size: clamp(0.72rem, 1.8vw, 0.8rem);
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
 }
 .signoff-names {
-  font-family: var(--royal);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 4vw, 2.3rem);
   color: #fff9ee;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 .signoff-family {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-style: italic;
   color: var(--gold2);
 }
 
-.flower { width: 90px; height: 90px; }
+.flower { width: 80px; height: 80px; }
 .bg-flower {
   position: absolute;
-  width: clamp(90px, 18vw, 200px);
+  width: clamp(70px, 16vw, 180px);
   height: auto;
-  opacity: 0.5;
+  opacity: 0.35;
 }
-.bg-flower.a { top: -2rem; left: -2rem; }
-.bg-flower.b { bottom: -2rem; right: -2rem; }
+.bg-flower.a { top: -1.5rem; left: -1.5rem; }
+.bg-flower.b { bottom: -1.5rem; right: -1.5rem; }
 
 .petals {
   position: absolute;
@@ -1122,44 +1101,45 @@ body {
 /* =================== THEME SWITCHER CONTROLS =================== */
 .theme-switcher-wrapper {
   position: fixed;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 1rem;
+  right: 1rem;
   z-index: 100;
 }
 .theme-toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.45rem 1rem;
-  background: rgba(25, 4, 12, 0.8);
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(25, 4, 12, 0.82);
   backdrop-filter: blur(10px);
   border: 1.5px solid var(--gold);
   border-radius: 999px;
   color: var(--gold2);
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   transition: all 0.25s ease;
+  touch-action: manipulation;
 }
 .theme-toggle-btn:hover {
   transform: translateY(-2px);
   background: rgba(35, 6, 18, 0.95);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
 }
 .theme-popover {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  width: 235px;
+  width: 220px;
   background: rgba(28, 4, 14, 0.96);
   backdrop-filter: blur(14px);
   border: 1.5px solid var(--gold);
   border-radius: 12px;
-  padding: 0.75rem;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.75);
+  padding: 0.65rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
   animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes popIn {
@@ -1168,31 +1148,31 @@ body {
 }
 .theme-popover-title {
   font-family: var(--sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
-  padding: 0.2rem 0.4rem 0.45rem;
+  padding: 0.2rem 0.35rem 0.4rem;
   border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 .theme-options-list {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 .theme-option-item {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   width: 100%;
-  padding: 0.5rem 0.65rem;
+  padding: 0.45rem 0.55rem;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #fff9ee;
   font-family: var(--sans);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   cursor: pointer;
   text-align: left;
   transition: all 0.2s ease;
@@ -1207,8 +1187,8 @@ body {
   font-weight: 600;
 }
 .theme-swatch {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   border: 2px solid;
   flex-shrink: 0;
@@ -1219,33 +1199,92 @@ body {
   font-weight: 700;
 }
 
+/* Floating Music Control */
 .music {
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 40;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   background: var(--wine);
   color: var(--gold2);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease;
+  touch-action: manipulation;
 }
 .music:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-@media (max-width: 480px) {
-  .ceremony-title { font-size: 2.8rem; }
-  .royal-names { font-size: 2.1rem; }
-  .ceremony-tag-wrapper { flex-direction: column; gap: 0.2rem; }
-  .ceremony-accent-line { width: 80px; }
-  .theme-toggle-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+/* =================== MOBILE RESPONSIVE TWEAKS =================== */
+@media (max-width: 600px) {
+  .envelope-wrapper {
+    width: min(340px, 92vw);
+    height: 220px;
+  }
+  .envelope-opened .envelope-card {
+    transform: translateY(-68%) scale(1.01);
+  }
+  .card-event {
+    font-size: 1.9rem;
+  }
+  .ceremony-title {
+    font-size: clamp(2.3rem, 9.5vw, 3.4rem);
+  }
+  .royal-names {
+    font-size: clamp(1.9rem, 7.5vw, 2.7rem);
+  }
+  .ceremony-tag-wrapper {
+    gap: 0.6rem;
+  }
+  .ceremony-accent-line {
+    width: 40px;
+  }
+  .countdown-grid {
+    gap: 0.35rem;
+    width: 95vw;
+  }
+  .cd-card {
+    padding: 0.75rem 0.2rem;
+    border-radius: 8px;
+  }
+  .cd-num {
+    font-size: 1.7rem;
+  }
+  .cd-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+  .card {
+    padding: 2.2rem 1.1rem;
+    outline-offset: -8px;
+  }
+  .card-venue {
+    font-size: 1.25rem;
+  }
+  .details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .details div {
+    padding: 0.9rem 0.6rem;
+  }
+  .details dd {
+    font-size: 1.15rem;
+  }
 }
+
+@media (max-width: 360px) {
+  .ceremony-title { font-size: 2.1rem; }
+  .royal-names { font-size: 1.75rem; }
+  .details { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
