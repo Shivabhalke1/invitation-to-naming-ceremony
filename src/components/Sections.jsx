@@ -30,6 +30,20 @@ export function FamilyIntroduction() {
         {i.babyName && <span className="baby-mention"> · Welcoming our little princess <strong>{i.babyName}</strong></span>}
       </p>
 
+      {/* Baby Girl Golden Frame Portrait */}
+      <div className="baby-portrait-wrapper" aria-label="Photo of our baby girl">
+        <div className="baby-portrait-halo" />
+        <div className="baby-portrait-frame">
+          <img
+            src="/images/baby_girl.jpg"
+            alt="Darling baby girl smiling with dimples and bow headband"
+            className="baby-portrait-img"
+          />
+        </div>
+        <span className="baby-frame-sparkle s1" aria-hidden="true">✨</span>
+        <span className="baby-frame-sparkle s2" aria-hidden="true">🎀</span>
+      </div>
+
       <div className="baby-sweet-tag">
         <span>🎀 Sweet little bows, happy giggles &amp; endless love! 🍼</span>
       </div>
@@ -44,18 +58,32 @@ export function FamilyIntroduction() {
 
 export function BlessingMessage() {
   return (
-    <section className="sec ivory" aria-labelledby="bl-h">
+    <section className="sec ivory blessing-section" aria-labelledby="bl-h">
       <p className="eyebrow reveal">Little Princess · Boundless Love</p>
       <h2 id="bl-h" className="section-serif-heading reveal d1">Our Sweet Baby Girl</h2>
       <div className="rule reveal d1" />
-      <p className="lead reveal d2">
-        A sweet little angel has stepped into our lives, bringing boundless sunshine, soft baby giggles, and an abundance of joy.
-        As we gather with family and cherished friends to bestow our baby girl with a special name and seek your divine blessings,
-        your presence will make this milestone truly magical!
-      </p>
-      <div className="blessing-signoff reveal d3">
-        <p className="signoff-quote">“A baby girl is a blessing of love, a touch of heaven, and a gift forever.”</p>
-        <p className="signoff-by">— Lovingly, <strong>{names}</strong></p>
+      
+      <div className="blessing-card-container reveal d2">
+        <div className="blessing-photo-frame">
+          <img
+            src="/images/baby_girl.jpg"
+            alt="Vaishnavi & Anand's darling baby girl smiling"
+            className="blessing-photo-img"
+          />
+          <div className="blessing-photo-badge">Our Little Angel 💖</div>
+        </div>
+
+        <div className="blessing-text-content">
+          <p className="lead blessing-lead">
+            A sweet little angel has stepped into our lives, bringing boundless sunshine, soft baby giggles, and an abundance of joy.
+            As we gather with family and cherished friends to bestow our baby girl with a special name and seek your divine blessings,
+            your presence will make this milestone truly magical!
+          </p>
+          <div className="blessing-signoff">
+            <p className="signoff-quote">“A baby girl is a blessing of love, a touch of heaven, and a gift forever.”</p>
+            <p className="signoff-by">— Lovingly, <strong>{names}</strong></p>
+          </div>
+        </div>
       </div>
     </section>
   );
